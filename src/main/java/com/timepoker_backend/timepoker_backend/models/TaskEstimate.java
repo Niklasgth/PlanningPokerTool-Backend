@@ -12,11 +12,11 @@ public class TaskEstimate {
     private String userId;
     private int estimatedDurationInHours;
 
-    public TaskEstimate(String id, String taskId, String userId, int estimatedDuration) {
+    public TaskEstimate(String id, String taskId, String userId, int estimatedDurationInHours) {
         this.id = id;
         this.taskId = taskId;
         this.userId = userId;
-        this.estimatedDurationInHours = estimatedDuration;
+        this.estimatedDurationInHours = estimatedDurationInHours;
     }
 
     public String getId() {
