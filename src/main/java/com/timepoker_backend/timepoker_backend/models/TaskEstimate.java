@@ -10,13 +10,13 @@ public class TaskEstimate {
     private String id;
     private String taskId;
     private String userId;
-    private long estimatedDuration;
+    private int estimatedDurationInHours;
 
     public TaskEstimate(String id, String taskId, String userId, long estimatedDuration) {
         this.id = id;
         this.taskId = taskId;
         this.userId = userId;
-        this.estimatedDuration = estimatedDuration;
+        this.estimatedDurationInHours = estimatedDuration;
     }
 
     public String getId() {
@@ -43,12 +43,12 @@ public class TaskEstimate {
         this.userId = userId;
     }
 
-    public long getEstimatedDuration() {
-        return estimatedDuration;
+    public long getEstimatedDurationInHours() {
+        return estimatedDurationInHours;
     }
 
     public void setEstimatedDuration(long estimatedDuration) {
-        this.estimatedDuration = estimatedDuration;
+        this.estimatedDurationInHours = estimatedDuration;
     }
 
     
