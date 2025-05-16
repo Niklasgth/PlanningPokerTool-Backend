@@ -1,10 +1,7 @@
 package com.timepoker_backend.timepoker_backend.services;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.timepoker_backend.timepoker_backend.DTO.TaskStatsDTO;
 import com.timepoker_backend.timepoker_backend.models.TaskEstimate;
 
@@ -20,7 +17,7 @@ public class StatsService {
         int totalEstimates = taskEstimates.size();
         int averageEstimate = 0;
         for (TaskEstimate taskEstimate : taskEstimates) {
-            averageEstimate += taskEstimate.getEstimatedDurationInHours();
+            averageEstimate += taskEstimate.getEstDurationHours();
         }
         averageEstimate = averageEstimate / totalEstimates;
 
