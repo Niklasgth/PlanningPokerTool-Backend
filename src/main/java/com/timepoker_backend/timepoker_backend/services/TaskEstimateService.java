@@ -1,4 +1,5 @@
 package com.timepoker_backend.timepoker_backend.services;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
@@ -7,7 +8,7 @@ import com.timepoker_backend.timepoker_backend.repositories.TaskEstimateReposito
 
 @Service
 public class TaskEstimateService {
-    
+
     private TaskEstimateRepository taskEstimateRepository;
 
     public TaskEstimateService(TaskEstimateRepository taskEstimateRepository) {
@@ -24,12 +25,16 @@ public class TaskEstimateService {
 
     public TaskEstimate getTaskEstimateById(String id) {
         Optional<TaskEstimate> taskEstimate = taskEstimateRepository.findById(id);
-    
-            if (taskEstimate.isPresent()) {
-                return taskEstimate.get();
-            } else {
-                return null;
-            }
+
+        if (taskEstimate.isPresent()) {
+            return taskEstimate.get();
+        } else {
+            return null;
+        }
+    }
+
+    public List<TaskEstimate> getEstimatesByTaskId(String id) {
+        return taskEstimateRepository.findByTaskId(id);
     }
 
 }

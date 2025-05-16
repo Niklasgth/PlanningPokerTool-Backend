@@ -5,18 +5,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "taskEstimates")
 public class TaskEstimate {
-    
+
     @Id
     private String id;
     private String taskId;
     private String userId;
     private int estimatedDurationInHours;
 
-    public TaskEstimate(String id, String taskId, String userId, long estimatedDuration) {
+    public TaskEstimate(String id, String taskId, String userId, int estimatedDurationInHours) {
         this.id = id;
         this.taskId = taskId;
         this.userId = userId;
-        this.estimatedDurationInHours = estimatedDuration;
+        this.estimatedDurationInHours = estimatedDurationInHours;
     }
 
     public String getId() {
@@ -43,13 +43,12 @@ public class TaskEstimate {
         this.userId = userId;
     }
 
-    public long getEstimatedDurationInHours() {
+    public int getEstimatedDurationInHours() {
         return estimatedDurationInHours;
     }
 
-    public void setEstimatedDuration(long estimatedDuration) {
+    public void setEstimatedDuration(int estimatedDuration) {
         this.estimatedDurationInHours = estimatedDuration;
     }
 
-    
 }
