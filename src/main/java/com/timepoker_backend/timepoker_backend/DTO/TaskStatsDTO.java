@@ -9,5 +9,6 @@ public class TaskStatsDTO {
     private String taskId; // not sure if needed? check later
     private int totalEstimates;
     private int averageEstimate;
+    //add totalDuration + logic
     // more if needed
 }
