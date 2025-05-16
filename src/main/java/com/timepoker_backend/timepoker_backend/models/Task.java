@@ -1,8 +1,6 @@
 package com.timepoker_backend.timepoker_backend.models;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import lombok.Builder;
 
 @Document(collection = "tasks")
