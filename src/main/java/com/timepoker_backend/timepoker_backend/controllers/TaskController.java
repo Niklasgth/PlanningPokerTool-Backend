@@ -15,7 +15,7 @@ import com.timepoker_backend.timepoker_backend.DTO.CreateTaskDTO;
 import com.timepoker_backend.timepoker_backend.models.Task;
 import com.timepoker_backend.timepoker_backend.services.TaskService;
 
-@RequestMapping("/api")
+
 @RestController
 public class TaskController {
 
