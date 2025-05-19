@@ -1,4 +1,5 @@
 package com.timepoker_backend.timepoker_backend.config;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -6,19 +7,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class CorsConfig {
-    //Cors som globalt tillåter alla anrop från antingen localhost:8080 PlanningPokerTool-Front2 på DigitalOcean:
+
+    @Value("${ALLOWED_ORIGINS}")
+    private String allowedOrigins;
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
-        String origins = System.getProperty("ALLOWED_ORIGINS");
-        String[] allowedOrigins = origins.split(",");
+        String[] originsArray = allowedOrigins.split(",");
 
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(allowedOrigins)
+                        .allowedOrigins(originsArray)
                         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
-                        
             }
         };
     }
