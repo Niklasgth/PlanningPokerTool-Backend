@@ -1,4 +1,7 @@
 package com.timepoker_backend.timepoker_backend.controllers;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,5 +21,8 @@ public class StatsController {
     public TaskStatsDTO getStatsByTaskId(@PathVariable String id) {
         return statsService.getStatsByTaskId(id);
     }
+
+    // @GetMapping("/stats")
+    // TODO hämta allmän statistik för alla tasks
 
 }

@@ -1,7 +1,13 @@
 package com.timepoker_backend.timepoker_backend.models;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 @Document(collection = "taskEstimates")
 public class TaskEstimate {
 
@@ -10,44 +16,6 @@ public class TaskEstimate {
     private String taskId;
     private String userId;
     private int estDurationHours;
-
-    public TaskEstimate(String id, String taskId, String userId, int estDurationHours) {
-        this.id = id;
-        this.taskId = taskId;
-        this.userId = userId;
-        this.estDurationHours = estDurationHours;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(String taskId) {
-        this.taskId = taskId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public int getEstDurationHours() {
-        return estDurationHours;
-    }
-
-    public void setEstDurationHours(int estDurationHours) {
-        this.estDurationHours = estDurationHours;
-    }
+    
 
 }

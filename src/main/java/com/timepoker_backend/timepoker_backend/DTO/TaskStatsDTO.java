@@ -8,7 +8,9 @@ import lombok.Data;
 public class TaskStatsDTO {
     private String taskId; // not sure if needed? check later
     private int totalEstimates;
-    private int averageEstimate;
-    //add totalDuration + logic
+    private double averageEstimate;
+    private double meanValue;
+    private double stdDeviation;
+    // add totalDuration + logic
     // more if needed
 }
