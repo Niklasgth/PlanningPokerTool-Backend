@@ -1,22 +1,21 @@
 package com.timepoker_backend.timepoker_backend.models;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "taskEstimates")
 public class TaskEstimate {
-    
+
     @Id
     private String id;
     private String taskId;
     private String userId;
-    private long estimatedDuration;
+    private int estDurationHours;
 
-    public TaskEstimate(String id, String taskId, String userId, long estimatedDuration) {
+    public TaskEstimate(String id, String taskId, String userId, int estDurationHours) {
         this.id = id;
         this.taskId = taskId;
         this.userId = userId;
-        this.estimatedDuration = estimatedDuration;
+        this.estDurationHours = estDurationHours;
     }
 
     public String getId() {
@@ -43,13 +42,12 @@ public class TaskEstimate {
         this.userId = userId;
     }
 
-    public long getEstimatedDuration() {
-        return estimatedDuration;
+    public int getEstDurationHours() {
+        return estDurationHours;
     }
 
-    public void setEstimatedDuration(long estimatedDuration) {
-        this.estimatedDuration = estimatedDuration;
+    public void setEstDurationHours(int estDurationHours) {
+        this.estDurationHours = estDurationHours;
     }
 
-    
 }

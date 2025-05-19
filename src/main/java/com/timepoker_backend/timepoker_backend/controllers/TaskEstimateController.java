@@ -7,29 +7,31 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/api")
 @RestController
 public class TaskEstimateController {
-    
+
     private TaskEstimateService taskEstimateService;
 
-    public TaskEstimateController (TaskEstimateService taskEstimateService) {
+    public TaskEstimateController(TaskEstimateService taskEstimateService) {
         this.taskEstimateService = taskEstimateService;
     }
 
-    @GetMapping("/api/taskEstimates")
+    @GetMapping("/taskEstimates")
     public List<TaskEstimate> getTaskEstimates() {
         return taskEstimateService.getTaskEstimates();
     }
 
-    @GetMapping("api/taskEstimate/{id}")
+    @GetMapping("/taskEstimate/{id}")
     public TaskEstimate getTaskEstimateByID(@PathVariable String id) {
         return taskEstimateService.getTaskEstimateById(id);
     }
-    
-    @PostMapping("/api/taskEstimate")
+
+    @PostMapping("/taskEstimate")
     public TaskEstimate createTaskEstimate(@RequestBody TaskEstimate taskEstimate) {
         return taskEstimateService.createTaskEstimate(taskEstimate);
     }
-    
+
 }
