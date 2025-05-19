@@ -3,6 +3,8 @@ package com.timepoker_backend.timepoker_backend.services;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.timepoker_backend.timepoker_backend.DTO.StatsDTO;
 import com.timepoker_backend.timepoker_backend.DTO.TaskStatsDTO;
 import com.timepoker_backend.timepoker_backend.models.TaskEstimate;
 
@@ -14,7 +16,7 @@ public class StatsService {
 
     public TaskStatsDTO getStatsByTaskId(String id) {
         List<TaskEstimate> taskEstimates = taskEstimateService.getEstimatesByTaskId(id);
-        List<Integer> filteredEstimates = taskEstimates.stream().map(a -> a.getEstDurationHours())
+        List<Integer> filteredEstimates = taskEstimates.stream().map(e -> e.getEstDurationHours())
                 .filter(vote -> vote > 0)
                 .toList(); // hantera om någon inte röstat - klar
 
@@ -27,30 +29,43 @@ public class StatsService {
         }
         averageEstimate = averageEstimate / filteredEstimates.size();
 
-        // standard avvikelser - WIP
-        double sum = 0;
+        // standard avvikelser - klar
         double stdDeviation = 0;
-        for (int taskEstimate : filteredEstimates) {
-            sum += Math.pow(taskEstimate - averageEstimate, 2);
+        if (filteredEstimates.isEmpty()) {
+            stdDeviation = 0;
+        } else if (filteredEstimates.size() == 1) {
+            stdDeviation = 0;
+        } else {
+            double sum = 0;
+            for (int taskEstimate : filteredEstimates) {
+                sum += Math.pow(taskEstimate - averageEstimate, 2);
+            }
+
+            stdDeviation = Math.sqrt(sum / filteredEstimates.size());
         }
-        stdDeviation = Math.sqrt(sum / filteredEstimates.size());
 
         // Median - klar
-        double meanValue = 0;
+        double median = 0;
         List<Integer> sortedEstimates = filteredEstimates.stream().sorted().toList();
         if (sortedEstimates.size() % 2 == 0) {
-            meanValue = (sortedEstimates.get(sortedEstimates.size() / 2)
+            median = (sortedEstimates.get(sortedEstimates.size() / 2)
                     + sortedEstimates.get(sortedEstimates.size() / 2 - 1)) / 2.0;
         } else {
-            meanValue = sortedEstimates.get(sortedEstimates.size() / 2);
+            median = sortedEstimates.get(sortedEstimates.size() / 2);
         }
 
-        System.out.println("meanValue: " + meanValue);
-        System.out.println("totalEstimates: " + totalEstimates);
-        System.out.println("filtered Estimates: " + filteredEstimates);
-        System.out.println("sortedEstimates: " + sortedEstimates);
-        System.out.println("standard Devaiation: " + stdDeviation);
-        return new TaskStatsDTO(id, totalEstimates, averageEstimate, meanValue, stdDeviation);
+        return new TaskStatsDTO(id, totalEstimates, averageEstimate, median, stdDeviation);
+    }
+
+    public StatsDTO getAllStats() {
+        // TODO
+        // total amount of tasks
+        // total amount of completed tasks
+        // average acuracy of estimates
+        // average amount of estimates
+        // average actual duration of a task
+        // etc
+        return null;
     }
 
 }
