@@ -62,7 +62,8 @@
                                          </li>
                                           </ul>
                                            <hr>
-                                            <h2>CORS Configuration</h2> CORS is enabled in your configuration to allow frontend requests (http://localhost:5173). 
+                                            <h2>CORS Configuration</h2>
+                                             CORS is enabled in your configuration to allow frontend requests (http://localhost:5173). 
                                             <hr>
                                              <h2>MongoDB Notes</h2>
                                               Make sure MongoDB is running: <pre><code>mongod</code></pre> Check your collections with: <pre><code>mongo use planningpoker show collections </code></pre>
