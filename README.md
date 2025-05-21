@@ -13,7 +13,7 @@
      <h2>Getting Started</h2>
       <h3>1. Requirements</h3>
        <ul>
-        <li>Java 17 or later</li>
+        <li>Java 21 or later</li>
          <li>Maven</li>
           <li>MongoDB (local or remote)</li>
            </ul>
