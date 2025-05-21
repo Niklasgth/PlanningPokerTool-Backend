@@ -22,9 +22,8 @@ public class StatsService {
 
         int totalEstimates = taskEstimates.size(); // antal röster - klar
 
-        if (totalEstimates == 0) {
-            // Return a DTO with zeros or nulls as appropriate
-            return new TaskStatsDTO(id, 0, 0, 0, 0);
+        if (filteredEstimates.isEmpty()) {
+            return new TaskStatsDTO(id, totalEstimates, 0, 0, 0);
         }
 
         // Medelvärde - klar
