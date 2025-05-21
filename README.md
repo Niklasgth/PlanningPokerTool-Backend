@@ -20,7 +20,7 @@
             <h3>2. Clone the project</h3>
              <pre><code>git clone [REPO_URL]</code></pre>
               <h3>3. Configure environment</h3>
-               Setup MongoDB database and create a .env-file in root for your connection string:<pre><code>MONGO_URI=your_connection_string
+               Setup MongoDB database on Atlas and create a .env-file in root for your connection string:<pre><code>MONGO_URI=your_connection_string
 JWT_SECRET=timepokerKey1
 SERVER_PORT=8080</code></pre>
                  <h3>4. Build & Run the app</h3>
