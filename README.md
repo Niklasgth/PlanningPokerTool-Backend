@@ -20,7 +20,9 @@
             <h3>2. Clone the project</h3>
              <pre><code>git clone [REPO_URL]</code></pre>
               <h3>3. Configure environment</h3>
-               If needed, change MongoDB connection in: <pre><code>src/main/resources/application.properties</code></pre>
+               Setup MongoDB database and create a .env-file in root for your connection string:<pre><code>MONGO_URI=your_connection_string
+JWT_SECRET=timepokerKey1
+SERVER_PORT=8080</code></pre>
                  <h3>4. Build & Run the app</h3>
                   <pre><code>./mvnw spring-boot:run</code></pre>
                    or with Maven installed: <pre><code>mvn spring-boot:run</code></pre>
