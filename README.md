@@ -25,7 +25,7 @@
                   <pre><code>./mvnw spring-boot:run</code></pre>
                    or with Maven installed: <pre><code>mvn spring-boot:run</code></pre>
                     <h3>5. Backend will start on:</h3>
-                     <pre><code>http://localhost:8080/api</code></pre>
+                     <pre><code>http://localhost:8080</code></pre>
                       <hr>
                        <h2>Project Structure Overview</h2>
                         <pre> src/ ├── controller/ → REST endpoints (UserController, TaskController) ├── model/ → Data models (User, Task, Estimate) ├── repository/ → MongoDB Repositories ├── service/ → Business logic └── ... </pre>
