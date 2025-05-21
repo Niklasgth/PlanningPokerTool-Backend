@@ -66,8 +66,4 @@ SERVER_PORT=8080</code></pre>
                                              <h2>MongoDB Notes</h2>
                                               Make sure MongoDB is running: <pre><code>mongod</code></pre> Check your collections with: <pre><code>mongo use planningpoker show collections </code></pre>
                                                 <hr>
-                                                 <h2>Production Notes</h2>
-                                                  If deployed, update the frontend `.env` file: <pre><code>MONGO_URI=mongodb+srv://timepoker_user:CDx4Y4g3QcpUK4S@cluster0.gtv9ppl.mongodb.net/?retryWrites=true&w=majority&appName=timepoker-backend
-                                                    JWT_SECRET=timepokerKey1
-                                                    SERVER_PORT=8080</code></pre> <hr>
                                                    <h2>Build for Production</h2> <pre><code>mvn clean install</code></pre>
