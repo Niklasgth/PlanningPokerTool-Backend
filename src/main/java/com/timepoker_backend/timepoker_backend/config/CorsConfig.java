@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class CorsConfig {
-    //Cors som globalt tillåter alla anrop från antingen localhost:8080 PlanningPokerTool-Front2 på DigitalOcean:
+    //Cors som globalt tillåter alla anrop från antingen localhost:5173 PlanningPokerTool-Front2 på DigitalOcean:
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
@@ -15,7 +15,6 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOrigins("https://planner-front-linoo.ondigitalocean.app")
                         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
-                        
             }
         };
     }

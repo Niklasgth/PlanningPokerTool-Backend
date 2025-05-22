@@ -1,5 +1,6 @@
 package com.timepoker_backend.timepoker_backend.services;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.timepoker_backend.timepoker_backend.models.Task;
@@ -32,4 +33,25 @@ public class TaskService {
             }
     }
     
+    public Task updateTask(String id, Map<String, Object> updates) {
+    Task task = getTaskById(id);
+    if (task == null) {
+        throw new RuntimeException("Task med id " + id + " hittades inte.");
+    }
+
+    if (updates.containsKey("taskDuration")) {
+        Object durationObj = updates.get("taskDuration");
+        if (durationObj instanceof Number) {
+            task.setTaskDuration(((Number) durationObj).intValue());
+        }
+    }
+
+    return taskRepository.save(task);
 }
+}
+
+
+
+
+
+
