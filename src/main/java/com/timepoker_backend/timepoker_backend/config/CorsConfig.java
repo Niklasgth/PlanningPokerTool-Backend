@@ -15,7 +15,6 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOrigins("https://planner-front-linoo.ondigitalocean.app")
                         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
-
             }
         };
     }
