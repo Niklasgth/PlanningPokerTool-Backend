@@ -69,6 +69,8 @@ public class StatsService {
         // average amount of estimates
         // average actual duration of a task
         // etc
+
+        // move logic to a separate method to use in both endpoints
         return null;
     }
 

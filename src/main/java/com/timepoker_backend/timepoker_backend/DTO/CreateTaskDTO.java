@@ -1,4 +1,5 @@
 package com.timepoker_backend.timepoker_backend.DTO;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
