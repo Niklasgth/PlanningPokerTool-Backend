@@ -85,8 +85,11 @@ public class StatsService {
         // total amount of tasks
         int totalTasks = tasks.size();
 
-        // total amount of completed tasks (unable to implement right now so set to 0)
-        int totalCompletedTasks = 0;
+        // total amount of completed tasks (tasks with logged time i.e. totalDuration >
+        // 0)
+        int totalCompletedTasks = (int) tasks.stream()
+                .filter(t -> t.getTaskDuration() > 0)
+                .count();
 
         // average acuracy of estimates (compared to actual duration)
         // return a double between 0 and 1
