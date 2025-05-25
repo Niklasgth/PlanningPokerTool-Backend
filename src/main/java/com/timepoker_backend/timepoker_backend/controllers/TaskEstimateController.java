@@ -1,4 +1,5 @@
 package com.timepoker_backend.timepoker_backend.controllers;
+
 import org.springframework.web.bind.annotation.RestController;
 import com.timepoker_backend.timepoker_backend.models.TaskEstimate;
 import com.timepoker_backend.timepoker_backend.services.TaskEstimateService;
@@ -27,6 +28,11 @@ public class TaskEstimateController {
     @GetMapping("/taskEstimate/{id}")
     public TaskEstimate getTaskEstimateByID(@PathVariable String id) {
         return taskEstimateService.getTaskEstimateById(id);
+    }
+
+    @GetMapping("/taskEstimates/{id}")
+    public List<TaskEstimate> getEstimatesByTaskId(@PathVariable String id) {
+        return taskEstimateService.getEstimatesByTaskId(id);
     }
 
     @PostMapping("/taskEstimate")
