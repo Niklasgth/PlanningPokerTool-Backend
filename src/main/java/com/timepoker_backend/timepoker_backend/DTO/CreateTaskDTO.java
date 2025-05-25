@@ -12,7 +12,6 @@ public class CreateTaskDTO {
     @NotBlank(message = "Task name is required")
     @Size(max = 25, message = "Task name must be at most 25 characters")
     private String taskName;
-    @NotBlank(message = "Task story is required")
     @Size(max = 1000, message = "Task story must be at most 1000 characters")
     private String taskStory;
 }
