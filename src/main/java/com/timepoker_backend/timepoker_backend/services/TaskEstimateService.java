@@ -1,4 +1,5 @@
 package com.timepoker_backend.timepoker_backend.services;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
@@ -19,17 +20,17 @@ public class TaskEstimateService {
     }
 
     public TaskEstimate createTaskEstimate(TaskEstimate taskEstimate) {
+        if (taskEstimate.getEstDurationHours() < 0) {
+            throw new IllegalArgumentException("Duration cannot be negative");
+        }
         return taskEstimateRepository.save(taskEstimate);
     }
 
     public TaskEstimate getTaskEstimateById(String id) {
         Optional<TaskEstimate> taskEstimate = taskEstimateRepository.findById(id);
 
-        if (taskEstimate.isPresent()) {
-            return taskEstimate.get();
-        } else {
-            return null;
-        }
+        return taskEstimate
+                .orElseThrow(() -> new NullPointerException("TaskEstimate with id " + id + " was not found"));
     }
 
     public List<TaskEstimate> getEstimatesByTaskId(String id) {

@@ -3,8 +3,6 @@ package com.timepoker_backend.timepoker_backend.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +17,8 @@ import com.timepoker_backend.timepoker_backend.DTO.UserRegisterDTO;
 import com.timepoker_backend.timepoker_backend.DTO.UserResponseDTO;
 import com.timepoker_backend.timepoker_backend.models.User;
 import com.timepoker_backend.timepoker_backend.services.UserService;
+
+import jakarta.validation.Valid;
 
 @RequestMapping("/api")
 @RestController

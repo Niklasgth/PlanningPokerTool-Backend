@@ -1,19 +1,21 @@
 package com.timepoker_backend.timepoker_backend.controllers;
+
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.timepoker_backend.timepoker_backend.DTO.CreateTaskDTO;
 import com.timepoker_backend.timepoker_backend.models.Task;
 import com.timepoker_backend.timepoker_backend.services.TaskService;
-import org.springframework.web.bind.annotation.PatchMapping;
 
+import jakarta.validation.Valid;
 
 @RequestMapping("/api")
 @RestController
@@ -48,9 +50,9 @@ public class TaskController {
         return taskService.createTask(task);
     }
 
-@PatchMapping("/task/{id}")
-public Task updateTask(@PathVariable String id, @RequestBody Map<String, Object> updates) {
-    return taskService.updateTask(id, updates);
-}
+    @PatchMapping("/task/{id}")
+    public Task updateTask(@PathVariable String id, @RequestBody Map<String, Object> updates) {
+        return taskService.updateTask(id, updates);
+    }
 
 }

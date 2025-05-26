@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.timepoker_backend.timepoker_backend.DTO.StatsDTO;
 import com.timepoker_backend.timepoker_backend.DTO.TaskStatsDTO;
+import com.timepoker_backend.timepoker_backend.models.Task;
 import com.timepoker_backend.timepoker_backend.models.TaskEstimate;
 
 @Service
@@ -13,6 +14,17 @@ public class StatsService {
 
     @Autowired
     private TaskEstimateService taskEstimateService;
+
+    @Autowired
+    private TaskService taskService;
+
+    public double getAverage(List<Integer> values) {
+        double sum = 0;
+        for (var value : values) {
+            sum += value.doubleValue();
+        }
+        return sum / values.size();
+    }
 
     public TaskStatsDTO getStatsByTaskId(String id) {
         List<TaskEstimate> taskEstimates = taskEstimateService.getEstimatesByTaskId(id);
@@ -27,11 +39,11 @@ public class StatsService {
         }
 
         // Medelvärde - klar
-        double averageEstimate = 0;
-        for (int taskEstimate : filteredEstimates) {
-            averageEstimate += taskEstimate;
-        }
-        averageEstimate = averageEstimate / filteredEstimates.size();
+        double averageEstimate = getAverage(filteredEstimates);
+        // for (int taskEstimate : filteredEstimates) {
+        // averageEstimate += taskEstimate;
+        // }
+        // averageEstimate = averageEstimate / filteredEstimates.size();
 
         // standard avvikelser - klar
         double stdDeviation = 0;
@@ -62,14 +74,57 @@ public class StatsService {
     }
 
     public StatsDTO getAllStats() {
-        // TODO
+        List<Task> tasks = taskService.getTasks();
+        List<TaskEstimate> taskEstimates = taskEstimateService.getTaskEstimates();
+
+        List<Integer> taskDurations = taskService.getTasks().stream().map(e -> e.getTaskDuration()).toList();
+        List<Integer> taskEstimatesValues = taskEstimates.stream()
+                .map(e -> e.getEstDurationHours())
+                .filter(vote -> vote > 0)
+                .toList();
         // total amount of tasks
-        // total amount of completed tasks
-        // average acuracy of estimates
-        // average amount of estimates
+        int totalTasks = tasks.size();
+
+        // total amount of completed tasks (tasks with logged time i.e. totalDuration >
+        // 0)
+        int totalCompletedTasks = (int) tasks.stream()
+                .filter(t -> t.getTaskDuration() > 0)
+                .count();
+
+        // average acuracy of estimates (compared to actual duration)
+        // return a double between 0 and 1
+        // (0 = 0% accuracy, 1 = 100% accuracy)
+        double avgAccuracy = tasks.stream()
+                .mapToDouble(task -> {
+                    int taskDuration = task.getTaskDuration();
+                    List<Integer> estValues = taskEstimateService.getEstimatesByTaskId(task.getId()).stream()
+                            .map(e -> e.getEstDurationHours()).toList();
+                    double avgEstimate = getAverage(estValues);
+                    return (avgEstimate > 0 && taskDuration > 0)
+                            ? Math.min(avgEstimate, taskDuration) / Math.max(avgEstimate, taskDuration)
+                            : 0;
+                })
+                .average().orElse(0);
+
+        // average amount of estimates per task (how many people vote on a task on
+        // average)
+        double avgEstimateCount = 0;
+        if (!tasks.isEmpty()) {
+            avgEstimateCount = tasks.stream()
+                    .mapToInt(task -> taskEstimateService.getEstimatesByTaskId(task.getId()).size())
+                    .average()
+                    .orElse(0);
+        }
+
         // average actual duration of a task
+        double avgActualDuration = getAverage(taskDurations);
+
+        // average estimate (across all tasks)
+        double avgEstimateValue = getAverage(taskEstimatesValues);
         // etc
-        return null;
+
+        return new StatsDTO(totalTasks, totalCompletedTasks, avgAccuracy, avgEstimateCount, avgActualDuration,
+                avgEstimateValue);
     }
 
 }
