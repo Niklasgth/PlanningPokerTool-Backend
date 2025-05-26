@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,7 +45,8 @@ public class TaskController {
                 .taskName(dto.getTaskName())
                 .taskStory(dto.getTaskStory())
                 .taskDuration(0)
-                .assignedUserId(null)
+                // .assignedUserId(null)
+                .assignedUsers(null)
                 .build();
 
         return taskService.createTask(task);
@@ -54,5 +56,10 @@ public class TaskController {
     public Task updateTask(@PathVariable String id, @RequestBody Map<String, Object> updates) {
         return taskService.updateTask(id, updates);
     }
+    @PutMapping("/{id}/assign-users")
+    public Task assignUsersToTask(@PathVariable String id, @RequestBody List<String> userIds) {
+        return taskService.assignUsers(id, userIds);
+    }
+
 
 }

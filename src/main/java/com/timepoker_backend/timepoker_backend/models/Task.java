@@ -1,5 +1,7 @@
 package com.timepoker_backend.timepoker_backend.models;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,6 +20,8 @@ public class Task {
     private String taskName;
     private String taskStory;
     private int taskDuration;
-    private String assignedUserId;
+    // private String assignedUserId;
+    private List<User> assignedUsers;
+
 
 }
