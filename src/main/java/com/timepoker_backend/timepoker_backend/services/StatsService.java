@@ -32,7 +32,8 @@ public class StatsService {
                 .filter(vote -> vote > 0)
                 .toList(); // hantera om någon inte röstat - klar
 
-        int totalEstimates = taskEstimates.size(); // antal röster - klar
+        int totalEstimates = filteredEstimates.size(); //antal röster på filtererade så ej 0 röster är med i .size
+
 
         if (filteredEstimates.isEmpty()) {
             return new TaskStatsDTO(id, totalEstimates, 0, 0, 0);
