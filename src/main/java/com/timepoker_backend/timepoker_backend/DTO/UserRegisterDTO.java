@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+//DTO for registering
 @Data
 @AllArgsConstructor
 public class UserRegisterDTO {

@@ -1,8 +1,10 @@
 package com.timepoker_backend.timepoker_backend.DTO;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+//DTO for logging in
 @Data
 @AllArgsConstructor
 public class UserLoginDTO {

@@ -1,4 +1,5 @@
 package com.timepoker_backend.timepoker_backend.controllers;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
@@ -54,11 +55,11 @@ public class UserController {
     @PostMapping("/user/login")
     public ResponseEntity<?> login(@RequestBody @Valid UserLoginDTO dto) {
         Optional<User> userOpt = userService.getUserByUsername(dto.getUserName());
-    
+
         if (userOpt.isEmpty() || !userService.checkPassword(dto.getUserPassword(), userOpt.get().getUserPassword())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
-    
+
         User user = userOpt.get();
 
         UserDetails userDetails = org.springframework.security.core.userdetails.User
@@ -66,20 +67,10 @@ public class UserController {
                 .password(user.getUserPassword())
                 .authorities(List.of())
                 .build();
-    
+
         String token = jwtService.generateToken(userDetails);
 
         LoginResponseDTO response = new LoginResponseDTO(token, user.getId(), user.getUserName());
         return ResponseEntity.ok(response);
     }
-
-    // public ResponseEntity<?> login(@RequestBody @Valid UserLoginDTO dto) {
-    //     Optional<User> userOpt = userService.getUserByUsername(dto.getUserName());
-    //     if (userOpt.isEmpty() || !userService.checkPassword(dto.getUserPassword(), userOpt.get().getUserPassword())) {
-    //         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
-    //     }
-    //     User user = userOpt.get();
-    //     return ResponseEntity.ok(new UserResponseDTO(user.getId(), user.getUserName()));
-    // }
-
 }

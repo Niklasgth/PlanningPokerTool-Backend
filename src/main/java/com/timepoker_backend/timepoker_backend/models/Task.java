@@ -20,8 +20,6 @@ public class Task {
     private String taskName;
     private String taskStory;
     private int taskDuration;
-    // private String assignedUserId;
     private List<User> assignedUsers;
-
 
 }

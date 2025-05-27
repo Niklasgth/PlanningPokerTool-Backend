@@ -3,6 +3,8 @@ package com.timepoker_backend.timepoker_backend.services;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+
+import com.timepoker_backend.timepoker_backend.exception.TaskNotFoundException;
 import com.timepoker_backend.timepoker_backend.models.TaskEstimate;
 import com.timepoker_backend.timepoker_backend.repositories.TaskEstimateRepository;
 
@@ -28,9 +30,8 @@ public class TaskEstimateService {
 
     public TaskEstimate getTaskEstimateById(String id) {
         Optional<TaskEstimate> taskEstimate = taskEstimateRepository.findById(id);
-
         return taskEstimate
-                .orElseThrow(() -> new NullPointerException("TaskEstimate with id " + id + " was not found"));
+                .orElseThrow(() -> new TaskNotFoundException(id));
     }
 
     public List<TaskEstimate> getEstimatesByTaskId(String id) {

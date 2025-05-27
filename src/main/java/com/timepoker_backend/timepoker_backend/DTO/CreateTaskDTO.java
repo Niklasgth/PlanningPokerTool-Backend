@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+//DTO for creating a task
 @Data
 @AllArgsConstructor
 public class CreateTaskDTO {

@@ -30,23 +30,18 @@ public class StatsService {
         List<TaskEstimate> taskEstimates = taskEstimateService.getEstimatesByTaskId(id);
         List<Integer> filteredEstimates = taskEstimates.stream().map(e -> e.getEstDurationHours())
                 .filter(vote -> vote > 0)
-                .toList(); // hantera om någon inte röstat - klar
+                .toList(); // hantera om någon inte röstat
 
-        int totalEstimates = filteredEstimates.size(); //antal röster på filtererade så ej 0 röster är med i .size
-
+        int totalEstimates = filteredEstimates.size(); // antal röster på filtererade så ej 0 röster är med i .size
 
         if (filteredEstimates.isEmpty()) {
             return new TaskStatsDTO(id, totalEstimates, 0, 0, 0);
         }
 
-        // Medelvärde - klar
+        // Medelvärde
         double averageEstimate = getAverage(filteredEstimates);
-        // for (int taskEstimate : filteredEstimates) {
-        // averageEstimate += taskEstimate;
-        // }
-        // averageEstimate = averageEstimate / filteredEstimates.size();
 
-        // standard avvikelser - klar
+        // standard avvikelser
         double stdDeviation = 0;
         if (filteredEstimates.isEmpty()) {
             stdDeviation = 0;
@@ -61,7 +56,7 @@ public class StatsService {
             stdDeviation = Math.sqrt(sum / filteredEstimates.size());
         }
 
-        // Median - klar
+        // Median
         double median = 0;
         List<Integer> sortedEstimates = filteredEstimates.stream().sorted().toList();
         if (sortedEstimates.size() % 2 == 0) {
@@ -70,7 +65,6 @@ public class StatsService {
         } else {
             median = sortedEstimates.get(sortedEstimates.size() / 2);
         }
-
         return new TaskStatsDTO(id, totalEstimates, averageEstimate, median, stdDeviation);
     }
 
