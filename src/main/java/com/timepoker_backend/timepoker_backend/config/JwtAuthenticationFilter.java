@@ -33,6 +33,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String jwt;
         final String userName;
 
+        String requestPath = request.getServletPath();
+        if (requestPath.equals("/api/user/login") || requestPath.equals("/api/user/register")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
