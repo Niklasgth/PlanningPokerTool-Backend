@@ -14,6 +14,7 @@ public class TimepokerBackendApplication {
 			System.setProperty("MONGO_URI", dotenv.get("MONGO_URI"));
 			System.setProperty("SERVER_PORT", dotenv.get("SERVER_PORT"));
 			System.setProperty("ALLOWED_ORIGINS", dotenv.get("ALLOWED_ORIGINS"));
+			System.setProperty("JWT_SECRET_KEY", dotenv.get("JWT_SECRET_KEY"));
 		} catch (Exception e) {
 			System.out.println("No Dotenv, not running local");
 		}
