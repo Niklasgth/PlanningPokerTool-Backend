@@ -19,12 +19,23 @@ public class StatsService {
     private TaskService taskService;
 
     public double getAverage(List<Integer> values) {
+        if (values.isEmpty()) {
+            return 0;
+        }
         double sum = 0;
         for (var value : values) {
             sum += value.doubleValue();
         }
         return sum / values.size();
     }
+    
+    // public double getAverage(List<Integer> values) {
+    //     double sum = 0;
+    //     for (var value : values) {
+    //         sum += value.doubleValue();
+    //     }
+    //     return sum / values.size();
+    // }
 
     public TaskStatsDTO getStatsByTaskId(String id) {
         List<TaskEstimate> taskEstimates = taskEstimateService.getEstimatesByTaskId(id);
