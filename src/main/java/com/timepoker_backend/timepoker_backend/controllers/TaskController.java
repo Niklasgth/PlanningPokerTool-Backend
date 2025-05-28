@@ -23,8 +23,11 @@ import jakarta.validation.Valid;
 @RestController
 public class TaskController {
 
-    @Autowired
     private TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
     @GetMapping("/tasks")
     public List<Task> getTasks() {
@@ -53,10 +56,10 @@ public class TaskController {
     public Task updateTask(@PathVariable String id, @RequestBody Map<String, Object> updates) {
         return taskService.updateTask(id, updates);
     }
+
     @PutMapping("/{id}/assign-users")
     public Task assignUsersToTask(@PathVariable String id, @RequestBody List<String> userIds) {
         return taskService.assignUsers(id, userIds);
     }
-
 
 }

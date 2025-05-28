@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 public class TaskEstimateController {
 
-    @Autowired
     private TaskEstimateService taskEstimateService;
+
+    public TaskEstimateController(TaskEstimateService taskEstimateService) {
+        this.taskEstimateService = taskEstimateService;
+    }
 
     @GetMapping("/taskEstimates")
     public List<TaskEstimate> getTaskEstimates() {
