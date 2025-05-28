@@ -3,6 +3,7 @@ package com.timepoker_backend.timepoker_backend.controllers;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,7 +46,6 @@ public class TaskController {
                 .taskName(dto.getTaskName())
                 .taskStory(dto.getTaskStory())
                 .taskDuration(0)
-                // .assignedUserId(null)
                 .assignedUsers(null)
                 .build();
 
@@ -56,10 +56,10 @@ public class TaskController {
     public Task updateTask(@PathVariable String id, @RequestBody Map<String, Object> updates) {
         return taskService.updateTask(id, updates);
     }
+
     @PutMapping("/{id}/assign-users")
     public Task assignUsersToTask(@PathVariable String id, @RequestBody List<String> userIds) {
         return taskService.assignUsers(id, userIds);
     }
-
 
 }

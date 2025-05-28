@@ -1,10 +1,12 @@
 package com.timepoker_backend.timepoker_backend.services;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.timepoker_backend.timepoker_backend.DTO.UserResponseDTO;
+import com.timepoker_backend.timepoker_backend.exception.UserNotFoundException;
 import com.timepoker_backend.timepoker_backend.models.User;
 import com.timepoker_backend.timepoker_backend.repositories.UserRepository;
 
@@ -35,12 +37,9 @@ public class UserService {
 
     public UserResponseDTO getUserById(String id) {
         Optional<User> user = userRepository.findById(id);
-
-        if (user.isPresent()) {
-            return new UserResponseDTO(id, user.get().getUserName());
-        } else {
-            return null;
-        }
+        return user
+                .map(u -> new UserResponseDTO(id, u.getUserName()))
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 
     public boolean checkPassword(String rawPassword, String encodedPassword) {
