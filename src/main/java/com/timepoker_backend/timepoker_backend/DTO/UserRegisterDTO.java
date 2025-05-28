@@ -1,10 +1,10 @@
 package com.timepoker_backend.timepoker_backend.DTO;
 
-import javax.validation.constraints.NotBlank;
-
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+//DTO for registering
 @Data
 @AllArgsConstructor
 public class UserRegisterDTO {

@@ -11,7 +11,8 @@ public class StatsDTO {
     private int totalTasks;
     private int totalCompletedTasks;
     private double avgAccuracy;
-    private double avgEstimate;
+    private double avgEstimateCount;
     private double avgActualDuration;
+    private double avgEstimateValue;
 
 }
